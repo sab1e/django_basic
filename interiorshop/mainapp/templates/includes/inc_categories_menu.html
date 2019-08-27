@@ -1,0 +1,12 @@
+{% load staticfiles %}
+<ul class="featured-product__menu">
+    {% for link in links_menu %}
+        <li>
+            <a class="products__menu__link {% if request.resolver_match.url_name == link.href %} products__menu__link_active
+                      {% endif %}"
+               href='{% url link.href %}'>
+                {{ link.name|upper }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

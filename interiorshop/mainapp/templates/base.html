@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
+    {% block css %}
+        <link rel="stylesheet" href="{% static '/css/style.css' %}">
+        <link rel="stylesheet" href="{% static '/fonts/font-awesome/css/font-awesome.css' %}">
+    {% endblock %}
+    
+    {% block js%}
+    {% endblock %}
+    
+</head>
+<body>
+    <div class="conteiner">
+        <div class="top">
+            {% block menu%}
+            {% endblock %}
+            {% block content %}
+            {% endblock %}
+        </div>
+            {% block footer %}
+            <footer class="footer padding-site">
+              <div class="footer__content">
+                  <div class="footer__block_contact-us">
+                      <h3 class="footer__h3">Contact Us</h3>
+                      <div class="footer__contacts-info">
+                          <p class="footer__p">132A Bridge Road Richmond VIC Australia.</p>
+                          <p class="footer__p">Talk to us on 1300 132 info@interior.com</p>
+                      </div>
+                  </div>
+                  <div class="footer__block_useful-information">
+                      <h3 class="footer__h3">Useful Information</h3>
+                      <nav class="footer__useful-Information_block-links">
+                          <ul class="footer__useful-Information_menu">
+                              <li><a class="footer__useful-information_menu-links" href=#>Sales terms</a></li>
+                              <li><a class="footer__useful-information_menu-links" href=#>Customer care</a></li>
+                              <li><a class="footer__useful-information_menu-links" href=#>Delivery</a></li>
+                          </ul>
+                          <ul class="footer__useful-Information_menu">
+                              <li><a class="footer__useful-information_menu-links" href=#>Architect accounts</a></li>
+                              <li><a class="footer__useful-information_menu-links" href=#>Careers</a></li>
+                              <li><a class="footer__useful-information_menu-links" href=#>Exchanges & returns</a></li>
+                          </ul>
+                      </nav>
+                  </div>
+                  <div class="footer__block_subscribe">
+                      <h3 class="footer__h3">Let’s Stay in Touch!</h3>
+                      <p class="footer__p">Suscribe to know about our latest news, products and special offers just for suscribers.</p>
+                      <form class="footer__subscribe-form" action=#>
+                          <input class="footer__input" type="email" placeholder="your email address">
+                          <button class="footer__input-submit" type="submit"><i class="fa fa-telegram"></i></button>
+                      </form>
+                  </div>
+              </div>
+              <div class="footer__other-content">
+                  <p class="footer__copyrigt">© Copyright - INTERIOR 2016. All Rights Reserved.</p>
+                  <div class="box__social-icons">
+                      <a class="social-icons__links" href=#><i class="fa fa-facebook-f"></i></a>
+                      <a class="social-icons__links" href=#><i class="fa fa-twitter"></i></a>
+                      <a class="social-icons__links" href=#><i class="fa fa-google-plus"></i></a>
+                      <a class="social-icons__links" href=#><i class="fa fa-pinterest-p"></i></a>
+                  </div>
+                  <a class="footer__terms_policy" href=#>Terms & Conditions  /  Privacy policy & Cookies</a>
+              </div>
+          </footer>
+        {% endblock %}
+    </div>
+</body>
+</html>
