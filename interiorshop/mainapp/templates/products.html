@@ -8,40 +8,28 @@
                 </header>
                 <h1 class="hero__h1">Our Products Range</h1>
             </section>
-            <section class="featured-product padding-site padding-even">
-                <div class="featured-product__header">
+            <section class="trending-product padding-site">
+                <div class="products__header product__menu__padding">
                     {% include 'includes/inc_categories_menu.html' %}
                 </div>
-                <div class="featured-product__content">
-                    <div class="product-box" style="background-image: url({% static '/img/product-1.jpg' %})">
-                        <div class="product-card">
-                            <a class="button product__button" href=#><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
-                            <h6 class="product-card__h6">Fishnet Chair</h6>
-                            <p class="product-card__p">Seat and back with upholstery made of cold cure foam</p>
+                <div class="trending-product__content">
+                    {% for product in products %}
+                        <div class="trending__product-box" style="background-image: url({% static 'img/' %}{{ product.image_src }})">
+                            <div class="product-card">
+                                <a class="button product__button" href=#><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
+                                <h6 class="product-card__h6">{{ product.name }}</h6>
+                                <p class="product-card__p">{{ product.desc }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="product-box" style="background-image: url(/static/img/product-2.jpg)">
-                        <div class="product-card">
-                            <a class="button product__button" href=#><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
-                            <h6 class="product-card__h6">Fishnet Chair</h6>
-                            <p class="product-card__p">Seat and back with upholstery made of cold cure foam</p>
-                        </div>
-                    </div>
-                    <div class="product-box" style="background-image: url(/static/img/product-3.jpg)">
-                        <div class="product-card">
-                            <a class="button product__button" href=#><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
-                            <h6 class="product-card__h6">Fishnet Chair</h6>
-                            <p class="product-card__p">Seat and back with upholstery made of cold cure foam</p>
-                        </div>
-                    </div>
-                    <div class="product-box" style="background-image: url(/static/img/product-4.jpg)">
-                        <div class="product-card">
-                            <a class="button product__button" href=#><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
-                            <h6 class="product-card__h6">Fishnet Chair</h6>
-                            <p class="product-card__p">Seat and back with upholstery made of cold cure foam</p>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
+            <div padding-site>
+                <i class="fa fa-refresh fa-3x refresh" aria-hidden="true"></i>
+            </div>
             </section>
-        </div>
 {% endblock %}
+
+
+
+
+

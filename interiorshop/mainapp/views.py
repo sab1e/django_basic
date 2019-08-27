@@ -32,7 +32,46 @@ def products(request):
         {'href': 'products_classic', 'name': 'classic'},
     ]
 
-    content = {'title': title, 'links_menu': links_menu, 'main_links_menu': main_links_menu}
+    products = [
+        {
+            'name': 'Fishnet Chair',
+            'desc': 'Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.',
+            'image_src': 'product-11.jpg',
+            'alt': 'product 11'
+        },
+        {
+            'name': 'Fishnet Chair',
+            'desc': 'Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.',
+            'image_src': 'product-21.jpg',
+            'alt': 'product 21'
+        },
+        {
+            'name': 'Fishnet Chair',
+            'desc': 'Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.',
+            'image_src': 'product-31.jpg',
+            'alt': 'product 31'
+        },
+        {
+            'name': 'Fishnet Chair',
+            'desc': 'Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.',
+            'image_src': 'product-41.jpg',
+            'alt': 'product 41'
+        },
+        {
+            'name': 'Fishnet Chair',
+            'desc': 'Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.',
+            'image_src': 'product-5.jpg',
+            'alt': 'product 5'
+        },
+        {
+            'name': 'Fishnet Chair',
+            'desc': 'Seat and back with upholstery made of cold cure foam. Steel frame, available in matt powder-coated black or highly polished chrome.',
+            'image_src': 'product-6.jpg',
+            'alt': 'product 6'
+        },
+    ]
+
+    content = {'title': title, 'links_menu': links_menu, 'main_links_menu': main_links_menu, 'products': products}
     return render(request, 'products.html', content)
 
 
