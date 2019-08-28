@@ -1,13 +1,22 @@
 {% load staticfiles %}
 <nav>
     <ul class="menu">
-        {% for link in main_links_menu %}
-            <li>
-                <a class="menu__link {% if request.resolver_match.url_name == link.href %}menu__link_active{% endif %}" href="{% url link.href %}">
-                    {{ link.name|upper }}
-                </a>
-            </li>
-        {% endfor %}
+        <li>
+            <a class="menu__link {% if request.resolver_match.url_name == 'main' %}menu__link_active{% endif %}"
+               href="{% url 'main' %}">HOME
+            </a>
+        </li>
+        <li>
+            <a class="menu__link {% if request.resolver_match.url_name == 'products' %}menu__link_active{% endif %}"
+               href="{% url 'products:index' %}">HOME
+            </a>
+        </li>
+        <li>
+            <a class="menu__link {% if request.resolver_match.url_name == 'contact' %}menu__link_active{% endif %}"
+               href="{% url 'contact' %}">CONTACT
+            </a>
+        </li>
+
         <li><a class="menu__link" href=#><img src="{% static '/img/search.svg' %}" alt="search"></a></li>
     </ul>
 </nav>
