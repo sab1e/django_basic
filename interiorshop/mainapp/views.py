@@ -1,27 +1,20 @@
 from django.shortcuts import render
 import datetime
+from .models import ProductCategory, Product
 
 
 def main(request):
     title = 'Main'
-    main_links_menu = [
-        {'href': 'main', 'name': 'home'},
-        {'href': 'products', 'name': 'products'},
-        {'href': 'contact', 'name': 'contact'},
-    ]
 
-    content = {'title': title, 'main_links_menu': main_links_menu}
-    return render(request, 'index.html',  content)
+    products = Product.objects.all()
+
+    content = {'title': title, 'products': products}
+    return render(request, 'index.html', content)
 
 
-def products(request):
+def products(request, pk=None):
+    print(pk)
     title = 'Products'
-
-    main_links_menu = [
-        {'href': 'main', 'name': 'home'},
-        {'href': 'products', 'name': 'products'},
-        {'href': 'contact', 'name': 'contact'},
-    ]
 
     links_menu = [
         {'href': 'products_all', 'name': 'all'},
@@ -32,18 +25,14 @@ def products(request):
         {'href': 'products_classic', 'name': 'classic'},
     ]
 
-    content = {'title': title, 'links_menu': links_menu, 'main_links_menu': main_links_menu}
+    products = Product.objects.all()
+
+    content = {'title': title, 'links_menu': links_menu, 'products': products}
     return render(request, 'products.html', content)
 
 
 def contact(request):
     title = 'Contact'
-
-    main_links_menu = [
-        {'href': 'main', 'name': 'home'},
-        {'href': 'products', 'name': 'products'},
-        {'href': 'contact', 'name': 'contact'},
-    ]
 
     visit_date = datetime.datetime.now()
     locations = [
@@ -67,6 +56,6 @@ def contact(request):
         },
     ]
 
-    content = {'title': title, 'main_links_menu': main_links_menu, 'visit_date': visit_date, 'locations': locations}
+    content = {'title': title, 'visit_date': visit_date, 'locations': locations}
     return render(request, 'contact.html',  content)
 # Create your views here.
