@@ -1,0 +1,56 @@
+[
+    {
+        "category": "декор",
+        "name": "Светильник подвесной",
+        "image": "products_images/product-11.jpg",
+        "short_desc": "использованы премиальные материалы",
+        "description": "для тех, кто стремится к лучшему",
+        "price": "3687.2",
+        "quantity": "21"
+    },
+    {
+        "category": "дом",
+        "name": "комфорт 2",
+        "image": "products_images/product-21.jpg",
+        "short_desc": "очень комфортный стул",
+        "description": "подойдет для общения с друзьями",
+        "price": "3687.2",
+        "quantity": "21"
+    },
+    {
+        "category": "декор",
+        "name": "светильник настольный",
+        "image": "products_images/product-31.jpg",
+        "short_desc": "универсальное решение",
+        "description": "функциональное и комфортное решение",
+        "price": "2989.5",
+        "quantity": "17"
+    },
+    {
+        "category": "декор",
+        "name": "светильник настенный",
+        "image": "products_images/product-41.jpg",
+        "short_desc": "универсальное решение",
+        "description": "подойдет для любого дома и офиса",
+        "price": "3687.2",
+        "quantity": "21"
+    },
+    {
+        "category": "декор",
+        "name": "ступка и пестик",
+        "image": "products_images/product-5.jpg",
+        "short_desc": "использованы премиальные материалы",
+        "description": "для тех, кто стремится к лучшему",
+        "price": "8157.99",
+        "quantity": "7"
+    },
+    {
+        "category": "декор",
+        "name": "ваза",
+        "image": "products_images/product-6.jpg",
+        "short_desc": "инновационный дизайн",
+        "description": "нестандартное решение для современного интерьера",
+        "price": "1895.25",
+        "quantity": "27"
+    }
+]
