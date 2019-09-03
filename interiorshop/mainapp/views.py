@@ -13,21 +13,13 @@ def main(request):
 
 
 def products(request, pk=None):
-    print(pk)
     title = 'Products'
 
-    links_menu = [
-        {'href': 'products_all', 'name': 'all'},
-        {'href': 'products_home', 'name': 'home'},
-        {'href': 'products_office', 'name': 'office'},
-        {'href': 'products_furniture', 'name': 'furniture'},
-        {'href': 'products_modern', 'name': 'modern'},
-        {'href': 'products_classic', 'name': 'classic'},
-    ]
-
     products = Product.objects.all()
+    products_category = ProductCategory.objects.all()
 
-    content = {'title': title, 'links_menu': links_menu, 'products': products}
+    content = {'title': title, 'products_category': products_category,
+               'products': products}
     return render(request, 'products.html', content)
 
 

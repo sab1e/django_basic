@@ -1,11 +1,17 @@
 {% load staticfiles %}
 <ul class="featured-product__menu">
-    {% for link in links_menu %}
         <li>
-            <a class="products__menu__link {% if request.resolver_match.url_name == link.href %} products__menu__link_active
+            <a class="products__menu__link {% if request.resolver_match.url_name == '0' %} products__menu__link_active
+                      {% endif %}" href='/products/0/'>
+                ВСЕ
+            </a>
+        </li>
+    {% for product_category in products_category %}
+        <li>
+            <a class="products__menu__link {% if request.resolver_match.url_name == product_category.pk %} products__menu__link_active
                       {% endif %}"
-               href='{% url link.href %}'>
-                {{ link.name|upper }}
+               href='/products/{{ product_category.pk }}/'>
+                {{ product_category.name|upper }}
             </a>
         </li>
     {% endfor %}
