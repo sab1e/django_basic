@@ -1,16 +1,16 @@
 {% load staticfiles %}
 <ul class="featured-product__menu">
         <li>
-            <a class="products__menu__link {% if request.resolver_match.url_name == '0' %} products__menu__link_active
-                      {% endif %}" href='/products/0/'>
+            <a class="products__menu__link {% if request.resolver_match.kwargs.pk == 0 %} products__menu__link_active
+                      {% endif %}" href='{% url 'products:category' 0 %}'>
                 ВСЕ
             </a>
         </li>
     {% for product_category in products_category %}
         <li>
-            <a class="products__menu__link {% if request.resolver_match.url_name == product_category.pk %} products__menu__link_active
+            <a class="products__menu__link {% if request.resolver_match.kwargs.pk|add:'0' == product_category.pk %} products__menu__link_active
                       {% endif %}"
-               href='/products/{{ product_category.pk }}/'>
+               href="{% url 'products:category' product_category.pk %}">
                 {{ product_category.name|upper }}
             </a>
         </li>
