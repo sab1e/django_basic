@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
+from django.db.models import Sum
 import datetime
 from .models import ProductCategory, Product
+from basketapp.models import Basket
 
 
 def main(request):
@@ -14,13 +17,41 @@ def main(request):
 
 def products(request, pk=None):
     title = 'Products'
-
-    products = Product.objects.all()
     products_category = ProductCategory.objects.all()
 
-    content = {'title': title, 'products_category': products_category,
-               'products': products}
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
+        basket_count = basket.aggregate(Sum('quantity'))
+
+    if pk is not None:
+        if pk == 0:
+            products = Product.objects.all().order_by('price')
+            category = {'name': 'ВСЕ'}
+        else:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = Product.objects.filter(category__pk=pk).order_by('price')
+
+        content = {
+            'title': title,
+            'products_category': products_category,
+            'category': category,
+            'products': products,
+            'basket_count': basket_count
+        }
+        return render(request, 'products_list.html', content)
+
+    products = Product.objects.all()
+
+    content = {
+        'title': title,
+        'products_category': products_category,
+        'products': products,
+        'basket_count': basket_count
+    }
+
     return render(request, 'products.html', content)
+
 
 
 def contact(request):

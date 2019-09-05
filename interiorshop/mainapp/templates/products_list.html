@@ -13,6 +13,7 @@
                     {% include 'includes/inc_categories_menu.html' %}
                 </div>
                 <div class="trending-product__content">
+                    <h6 class="product-card__h6">Категория: {{ category.name|title }}</h6>
                     {% for product in products %}
                         <div class="trending__product-box" style="background-image: url(/media/{{ product.image }})">
                             <div class="product-card">
@@ -28,8 +29,3 @@
             </div>
             </section>
 {% endblock %}
-
-
-
-
-
