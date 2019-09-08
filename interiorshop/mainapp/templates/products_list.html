@@ -6,7 +6,6 @@
                     <a class="logo" href="/"><img src="{% static '/img/logo.svg' %}" alt="logo"></a>
                     {% include 'includes/inc_menu.html' %}
                 </header>
-                <h1 class="hero__h1">Our Products Range</h1>
             </section>
             <section class="trending-product padding-site">
                 <div class="products__header product__menu__padding">
@@ -17,15 +16,12 @@
                     {% for product in products %}
                         <div class="trending__product-box" style="background-image: url(/media/{{ product.image }})">
                             <div class="product-card">
-                                <a class="button product__button" href="{% url 'basket:add' product.pk %}"><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
+                                <a class="button product__button" href="{% url 'products:product' product.pk %}"><img class="product-card__arrow" src="{% static '/img/arrow.svg' %}" alt="arrow"></a>
                                 <h6 class="product-card__h6">{{ product.name }}</h6>
                                 <p class="product-card__p">{{ product.description }}</p>
                             </div>
                         </div>
                     {% endfor %}
                 </div>
-            <div padding-site>
-                <i class="fa fa-refresh fa-3x refresh" aria-hidden="true"></i>
-            </div>
             </section>
 {% endblock %}

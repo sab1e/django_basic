@@ -39,7 +39,10 @@
             <a class="menu__link" href="{% url 'basket:view' %}">
                 <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
                 <span>
-                    {% if basket_count %} {{ basket_count.quantity__sum }} {% endif %}
+                    {% if basket %} 
+                        {{ basket.0.total_cost|floatformat:0 }} руб 
+                        ({{ basket.0.total_quantity }} шт)
+                    {% endif %}
                 </span>
             </a>
         </li>
