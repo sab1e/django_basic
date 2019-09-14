@@ -1,6 +1,7 @@
 
 {% extends 'adminapp/base.html' %}
 {% load staticfiles %}
+{% load my_tags %}
 
 {% block content %}
   <div class="products_list">
@@ -13,7 +14,7 @@
     {% for object in objects %}
       <div class="product_record">
         <img 
-          src="/media/{{ object.image|default:'products_images/default.jpg' }}"
+          src="{{ object.image|default:'products_images/default.jpg'|media_folder_products }}"
           alt="{{ object.name }}">
         <div class="product_name">
           {{ object.name|title }}

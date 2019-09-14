@@ -11,8 +11,30 @@
                 <div class="products__header product__menu__padding">
                     {% include 'includes/inc_categories_menu.html' %}
                 </div>
+                <div class="products_list">
+                    <div>
+                        <h6 class="product-card__h6">Категория: {{ category.name|title }}</h6>
+                    <div class="paginator">
+                      {% if products.has_previous %}
+                        <a href="{% url 'products:page' category.pk products.previous_page_number %}">
+                          <
+                        </a>
+                      {% endif %}
+                      <span class="current">
+                        страница {{ products.number }} из
+                        {{ products.paginator.num_pages }}
+                      </span>
+                      {% if products.has_next %}
+                        <a href="{% url 'products:page' category.pk products.next_page_number %}">
+                          >
+                        </a>
+                      {% endif %}
+                    </div>
+                  </div>
+
                 <div class="trending-product__content">
-                    <h6 class="product-card__h6">Категория: {{ category.name|title }}</h6>
+
+
                     {% for product in products %}
                         <div class="trending__product-box" style="background-image: url(/media/{{ product.image }})">
                             <div class="product-card">
@@ -22,6 +44,7 @@
                             </div>
                         </div>
                     {% endfor %}
+
                 </div>
             </section>
 {% endblock %}
