@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import ProductCategory, Product
+from django.views.generic.list import ListView
 from basketapp.models import Basket
 import datetime
 import random
@@ -15,6 +16,16 @@ def main(request):
     content = {'title': title, 'products': products}
     return render(request, 'index.html', content)
 
+
+# class MainListView(ListView):
+#     model = Product
+#     template_name = 'index.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Главня'
+#
+#         return context
 
 def products(request, pk=None, page=1):
     title = 'Товары'

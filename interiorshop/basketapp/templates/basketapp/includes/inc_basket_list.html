@@ -1,6 +1,8 @@
 {% load my_tags %}
-{% for item in basket_items %}
+{% for item in object_list %}
     <div class="basket_record">
+    <form action="{% url 'basket:remove' item.pk %}" method="post">
+        {% csrf_token %}
         <img src="{{ item.product.image|media_folder_products }}"
              alt="{{ item.product.short_desc }}">
         <span class="category_name">{{ item.product.category.name }}</span> 
@@ -10,16 +12,15 @@
                              value="{{ item.quantity }}">
         <span class="product_cost">{{ item.cost }}&nbspруб</span>
         <button class="btn btn-round">
-            <a href="{% url 'basket:remove' item.pk %}" class="">
-                удалить
-            </a>
+             удалить
         </button>
+    </form>
     </div>
 {% endfor %}
 
-{% if basket_items %}
+{% if object_list %}
     <div class="basket_summary">
-        В корзине {{ basket_items.0.total_quantity }} товаров общей стоимостью
-        {{ basket_items.0.total_cost }} руб
+        В корзине {{ object_list.0.total_quantity }} товаров общей стоимостью
+        {{ object_list.0.total_cost }} руб
     </div>
 {% endif %}
