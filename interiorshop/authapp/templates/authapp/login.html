@@ -14,4 +14,9 @@
     <form action="{% url 'auth:register' %}" class="pb-3">
         <button class="form-control" type="submit">Зарегистрироваться</button>
     </form>
+    <button class="btn btn-round form-control">
+        <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+           Вход через ВКонтакте
+        </a>
+    </button>
 {% endblock %}

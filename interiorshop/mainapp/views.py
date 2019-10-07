@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import ProductCategory, Product
-from basketapp.models import Basket
+from django.views.generic.list import ListView
 import datetime
 import random
 
@@ -16,13 +16,19 @@ def main(request):
     return render(request, 'index.html', content)
 
 
+# class MainListView(ListView):
+#     model = Product
+#     template_name = 'index.html'
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Главня'
+#
+#         return context
+
 def products(request, pk=None, page=1):
     title = 'Товары'
     products_category = ProductCategory.objects.filter(is_active=True)
-    basket = get_basket(request.user)
-
-    if request.user.is_authenticated:
-        basket = Basket.objects.filter(user=request.user)
 
     if pk is not None:
         if pk == 0:
@@ -50,7 +56,6 @@ def products(request, pk=None, page=1):
             'products_category': products_category,
             'category': category,
             'products': products_paginator,
-            'basket': basket
         }
         return render(request, 'products_list.html', content)
 
@@ -62,7 +67,6 @@ def products(request, pk=None, page=1):
         'products_category': products_category,
         'hot_product': hot_product,
         'same_products': same_products,
-        'basket': basket
     }
 
     return render(request, 'products.html', content)
@@ -75,7 +79,6 @@ def product(request, pk):
         'title': title,
         'products_category': ProductCategory.objects.all(),
         'product': get_object_or_404(Product, pk=pk),
-        'basket': get_basket(request.user),
     }
 
     return render(request, 'product.html', content)
@@ -110,13 +113,6 @@ def contact(request):
     return render(request, 'contact.html',  content)
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    else:
-        return []
-
-
 def get_hot_product():
     products = Product.objects.all()
 
@@ -124,7 +120,6 @@ def get_hot_product():
 
 
 def get_same_products(hot_product):
-    same_products = Product.objects.filter(category=hot_product.category).\
-                                            exclude(pk=hot_product.pk)[:3]
+    same_products = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk)[:3]
 
     return same_products
