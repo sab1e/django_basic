@@ -3,38 +3,53 @@
     <ul class="menu">
         <li>
             <a class="menu__link {% if request.resolver_match.url_name == 'main' %}menu__link_active{% endif %}"
-               href="{% url 'main' %}">HOME
+               href="{% url 'main' %}">Главная
             </a>
         </li>
         <li>
             <a class="menu__link {% if request.resolver_match.namespace == 'products' %}menu__link_active{% endif %}"
-               href="{% url 'products:index' %}">PRODUCT
+               href="{% url 'products:index' %}">Товары
             </a>
         </li>
         <li>
             <a class="menu__link {% if request.resolver_match.url_name == 'contact' %}menu__link_active{% endif %}"
-               href="{% url 'contact' %}">CONTACT
+               href="{% url 'contact' %}">Контакты
             </a>
         </li>
-        {% if user.is_authenticated %}
-        <li>
-            <a class="menu__link" href="{% url 'auth:edit' %}">
-                {{ user.first_name|default:'Пользователь' }}
-            </a>
-        </li>
+        {% if user.is_authenticated%}
+            <li>
+                <div class="dropdown">
+                    <a class="dropdown-toggle menu__link" href="" data-toggle="dropdown">
+                        {{ user.first_name|default:'Пользователь' }}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="menu__link" href="{% url 'auth:edit' %}">
+                                Профиль
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu__link" href="{% url 'ordersapp:orders_list' %}">
+                                Заказы
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         {% endif %}
         {% if user.is_authenticated %}
             <li>
                 <a class="menu__link" href="{% url 'admin:users' %}">
-                    админка
+                    Админка
                 </a>
             </li>
         {% endif %}
         <li>
             {% if user.is_authenticated %}
-              <a class="menu__link" href="{% url 'auth:logout' %}">выйти</a>
+              <a class="menu__link" href="{% url 'auth:logout' %}">Выйти</a>
             {% else %}
-              <a class="menu__link" href="{% url 'auth:login' %}">войти</a>
+              <a class="menu__link" href="{% url 'auth:login' %}">Войти</a>
             {% endif %}
         </li>
         <li>
