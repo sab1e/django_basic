@@ -16,15 +16,16 @@ def main(request):
     return render(request, 'index.html', content)
 
 
-# class MainListView(ListView):
-#     model = Product
-#     template_name = 'index.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = 'Главня'
-#
-#         return context
+class MainListView(ListView):
+    model = Product
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Главня'
+
+        return context
+
 
 def products(request, pk=None, page=1):
     title = 'Товары'
