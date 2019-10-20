@@ -3,6 +3,8 @@ chardet==3.0.4
 Click==7.0
 defusedxml==0.6.0
 Django==2.2.4
+django-debug-toolbar==2.0
+django-debug-toolbar-template-profiler==2.0.0
 idna==2.8
 oauthlib==3.1.0
 Pillow==6.1.0
@@ -19,3 +21,4 @@ social-auth-app-django==3.1.0
 social-auth-core==3.2.0
 sqlparse==0.3.0
 urllib3==1.25.6
+wrapt==1.11.2
