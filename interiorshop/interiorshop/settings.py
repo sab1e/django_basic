@@ -122,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Asia/Yekaterinburg'
 
 USE_I18N = True
 
@@ -151,7 +151,7 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 LOGIN_URL = '/auth/login/'
 
-DOMAIN_NAME = 'http://45.141.100.138:8000'
+DOMAIN_NAME = 'http://localhost:8000'
 
 EMAIL_HOST = '127.0.0.1'
 EMAIL_PORT = '8005'

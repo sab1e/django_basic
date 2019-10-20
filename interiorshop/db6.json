@@ -1,0 +1,32 @@
+[
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 10,
+    "fields": {
+      "user": 1,
+      "tagline": "",
+      "aboutMe": "",
+      "gender": ""
+    }
+  },
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 12,
+    "fields": {
+      "user": 2,
+      "tagline": "",
+      "aboutMe": "",
+      "gender": ""
+    }
+  },
+  {
+    "model": "authapp.shopuserprofile",
+    "pk": 13,
+    "fields": {
+      "user": 3,
+      "tagline": "",
+      "aboutMe": "",
+      "gender": ""
+    }
+  }
+]
