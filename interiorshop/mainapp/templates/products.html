@@ -50,13 +50,13 @@
 
                 <div class="trending-product__title">
                     <h2 class="trending-product__title_h2">Похожие товары</h2>
-                    <a class="explore-all" href=#>показать все<img class="explore-all__arrow" src="{% static '/arrow.svg' %}" alt="arrow"></a>
+                    <a class="explore-all" href=#>показать все<img class="explore-all__arrow" src="{% static 'arrow.svg' %}" alt="arrow"></a>
                 </div>
                 <div class="trending-product__content">
                     {% for product in same_products %}
                         <div class="trending__product-box" style="background-image: url(/media/{{ product.image }})">
                             <div class="product-card">
-                                <a class="button product__button" href="{% url 'products:product' product.pk %}"><img class="product-card__arrow" src="{% static '/arrow.svg' %}" alt="arrow"></a>
+                                <a class="button product__button" href="{% url 'products:product' product.pk %}"><img class="product-card__arrow" src="{% static 'arrow.svg' %}" alt="arrow"></a>
                                 <h6 class="product-card__h6">{{ product.name }}</h6>
                                 <p class="product-card__p">{{ product.description }}</p>
                             </div>
