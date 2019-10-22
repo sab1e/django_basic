@@ -12,5 +12,6 @@ http://45.141.100.138/products/category/14/
 http://45.141.100.138/basket/
 http://45.141.100.138/order/
 http://45.141.100.138/auth/edit/
+http://45.141.100.138/auth/register/
 http://45.141.100.138/order/update/2/
 http://45.141.100.138/order/update/1/

@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import auth
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 from authapp.forms import ShopUserLoginForm
 from authapp.forms import ShopUserRegisterForm
 from authapp.forms import ShopUserEditForm
@@ -94,6 +95,7 @@ def verify(request, email, activation_key):
         return HttpResponseRedirect(reverse('main'))
 
 
+@login_required
 @transaction.atomic
 def edit(request):
     title = 'редактирование'

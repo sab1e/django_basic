@@ -2,14 +2,13 @@ from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
 from django.db.models.signals import pre_save, pre_delete
-
 from django.forms import inlineformset_factory
-
 from django.views.generic import ListView, UpdateView, DeleteView, CreateView
 from django.views.generic.detail import DetailView
-
 from django.dispatch import receiver
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 from basketapp.models import Basket
 from ordersapp.models import Order, OrderItem
@@ -22,6 +21,10 @@ class OrderList(ListView):
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+    @method_decorator(login_required())
+    def dispatch(self, request, *args, **kwargs):
+        return super(ListView, self).dispatch(*args, **kwargs)
 
 
 class OrderItemsCreate(CreateView):
@@ -70,6 +73,10 @@ class OrderItemsCreate(CreateView):
 
         return super(OrderItemsCreate, self).form_valid(form)
 
+    @method_decorator(login_required())
+    def dispatch(self, request, *args, **kwargs):
+        return super(CreateView, self).dispatch(*args, **kwargs)
+
 
 class OrderItemsUpdate(UpdateView):
     model = Order
@@ -107,6 +114,10 @@ class OrderItemsUpdate(UpdateView):
 
         return super(OrderItemsUpdate, self).form_valid(form)
 
+    @method_decorator(login_required())
+    def dispatch(self, request, *args, **kwargs):
+        return super(UpdateView, self).dispatch(*args, **kwargs)
+
 
 class OrderDelete(DeleteView):
     model = Order
@@ -120,6 +131,10 @@ class OrderRead(DetailView):
         context = super(OrderRead, self).get_context_data(**kwargs)
         context['title'] = 'заказ/просмотр'
         return context
+
+    @method_decorator(login_required())
+    def dispatch(self, request, *args, **kwargs):
+        return super(DetailView, self).dispatch(*args, **kwargs)
 
 
 def order_forming_complete(request, pk):
