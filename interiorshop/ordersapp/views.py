@@ -23,7 +23,7 @@ class OrderList(ListView):
         return Order.objects.filter(user=self.request.user)
 
     @method_decorator(login_required())
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(self, *args, **kwargs):
         return super(ListView, self).dispatch(*args, **kwargs)
 
 
