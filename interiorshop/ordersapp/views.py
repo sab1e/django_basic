@@ -74,7 +74,7 @@ class OrderItemsCreate(CreateView):
         return super(OrderItemsCreate, self).form_valid(form)
 
     @method_decorator(login_required())
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(self, *args, **kwargs):
         return super(CreateView, self).dispatch(*args, **kwargs)
 
 
@@ -115,7 +115,7 @@ class OrderItemsUpdate(UpdateView):
         return super(OrderItemsUpdate, self).form_valid(form)
 
     @method_decorator(login_required())
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(self, *args, **kwargs):
         return super(UpdateView, self).dispatch(*args, **kwargs)
 
 
@@ -133,7 +133,7 @@ class OrderRead(DetailView):
         return context
 
     @method_decorator(login_required())
-    def dispatch(self, request, *args, **kwargs):
+    def dispatch(self, *args, **kwargs):
         return super(DetailView, self).dispatch(*args, **kwargs)
 
 
