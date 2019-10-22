@@ -1,3 +1,4 @@
+http://45.141.100.138/auth/login/ POST username=django&password=geekbrains
 http://45.141.100.138/
 http://45.141.100.138/products/
 http://45.141.100.138/contact/
@@ -15,3 +16,5 @@ http://45.141.100.138/auth/edit/
 http://45.141.100.138/auth/register/
 http://45.141.100.138/order/update/2/
 http://45.141.100.138/order/update/1/
+http://45.141.100.138/order/read/1/
+http://45.141.100.138/order/read/2/
