@@ -35,7 +35,7 @@ def get_category(pk):
 
 def get_products():
     if settings.LOW_CACHE:
-        key = 'prosucts'
+        key = 'products'
         products = cache.get(key)
         if products is None:
             products = Product.objects.filter(is_active=True,
