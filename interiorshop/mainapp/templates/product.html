@@ -2,52 +2,54 @@
 {% load staticfiles %}
 
 {% block content %}
-            <section class="hero padding-site">
-                <header class="header">
-                    <a class="logo" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
-                    {% include 'includes/inc_menu.html' %}
-                </header>
-            </section>
-            <section class="padding-site">
-                <div class="products__header">
-                    {% include 'includes/inc_categories_menu.html' %}
-                </div>
-                <div class="details-products">
-                    <div class="details-slider">
-                        <div class="slider-product">
-                            <img src="/media/{{ product.image }}">
+    <div class="details">
+        <section class="hero padding-site">
+            <header class="header">
+                <a class="logo" href="/"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+                {% include 'includes/inc_menu.html' %}
+            </header>
+        </section>
+        <section class="padding-site">
+            <div class="products__header">
+                {% include 'includes/inc_categories_menu.html' %}
+            </div>
+            <div class="details-products">
+                <div class="details-slider">
+                    <div class="slider-product">
+                        <img src="/media/{{ product.image }}">
+                    </div>
+                    <div class="slider-control">
+                        <div class="block">
+                            <a href="#"><img class="slider-product__image" src="/media/{{ product.image }}" alt="">
+                                <div class="text"></div>
+                            </a>
                         </div>
-                        <div class="slider-control">
-                            <div class="block">
-                                <a href="#"><img class="slider-product__image" src="/media/{{ product.image }}" alt="">
-                                    <div class="text"></div>
-                                </a>
-                            </div>
-                            <div class="block">
-                                <a href="#"><img class="slider-product__image" src="/media/{{ product.image }}" alt="">
-                                    <div class="text"></div>
-                                </a>
-                            </div>
-                            <div class="block">
-                                <a href="#"><img class="slider-product__image" src="/media/{{ product.image }}" alt="">
-                                    <div class="text"></div>
-                                </a>
-                            </div>
+                        <div class="block">
+                            <a href="#"><img class="slider-product__image" src="/media/{{ product.image }}" alt="">
+                                <div class="text"></div>
+                            </a>
+                        </div>
+                        <div class="block">
+                            <a href="#"><img class="slider-product__image" src="/media/{{ product.image }}" alt="">
+                                <div class="text"></div>
+                            </a>
                         </div>
                     </div>
+                </div>
 
-                    <div class="description">
-                        <h3 class="big-bold">{{ product.name }}</h3>
-                        <p class="price"> {{ product.price }} <span>руб</span></p>
-                        <a href="{% url 'basket:add' product.pk %}" class="red-button">
-                            заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                        </a>
-                        <div class="description-text">
-                            {{ product.description }}
-                        </div>
+                <div class="description">
+                    <h3 class="big-bold">{{ product.name }}</h3>
+                    <p class="price"> {{ product.price }} <span>руб</span></p>
+                    <a href="{% url 'basket:add' product.pk %}" class="red-button">
+                        заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                    <div class="description-text">
+                        {{ product.description }}
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+    </div>
 {% endblock %}
 
 

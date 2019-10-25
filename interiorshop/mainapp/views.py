@@ -1,10 +1,13 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.conf import settings
-from .models import ProductCategory, Product
+from django.template.loader import render_to_string
 from django.views.generic.list import ListView
+from django.views.decorators.cache import cache_page
+from .models import ProductCategory, Product
 import datetime
 import random
 
@@ -164,6 +167,44 @@ def products(request, pk=None, page=1):
     }
 
     return render(request, 'products.html', content)
+
+
+def products_ajax(request, pk=None, page=1):
+    if request.is_ajax():
+        products_category = get_links_menu()
+
+        if pk:
+            if pk == '0':
+                products = get_products_orederd_by_price()
+                category = {
+                    'pk': 0,
+                    'name': 'ВСЕ'
+                }
+            else:
+                category = get_category(pk)
+                products = get_products_in_category_orederd_by_price(pk)
+
+            paginator = Paginator(products, 2)
+            try:
+                products_paginator = paginator.page(page)
+                except PageNotAnInteger:
+                products_paginator = paginator.page(1)
+            except EmptyPage:
+                products_paginator = paginator.page(paginator.num_pages)
+
+            content = {
+                'products_category': products_category,
+                'category': category,
+                'products': products_paginator,
+            }
+
+            result = render_to_string(
+                'mainapp/inludes/inc_products_list_content.html',
+                context=content,
+                request=request
+            )
+
+            return JsonResponse({'result': result})
 
 
 def product(request, pk):
