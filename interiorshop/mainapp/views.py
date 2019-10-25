@@ -199,7 +199,7 @@ def products_ajax(request, pk=None, page=1):
             }
 
             result = render_to_string(
-                'inludes/inc_products_list_content.html',
+                'includes/inc_products_list_content.html',
                 context=content,
                 request=request
             )
