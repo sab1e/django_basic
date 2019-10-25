@@ -187,7 +187,7 @@ def products_ajax(request, pk=None, page=1):
             paginator = Paginator(products, 2)
             try:
                 products_paginator = paginator.page(page)
-                except PageNotAnInteger:
+            except PageNotAnInteger:
                 products_paginator = paginator.page(1)
             except EmptyPage:
                 products_paginator = paginator.page(paginator.num_pages)
@@ -199,7 +199,7 @@ def products_ajax(request, pk=None, page=1):
             }
 
             result = render_to_string(
-                'mainapp/inludes/inc_products_list_content.html',
+                'inludes/inc_products_list_content.html',
                 context=content,
                 request=request
             )
