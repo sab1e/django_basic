@@ -21,7 +21,7 @@ class TestUserManagement(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.context['user'].is_anonymous)
-        self.assertEqual(response.context['title'], 'главная')
+        self.assertEqual(response.context['title'], 'Main')
         self.assertNotContains(response, 'Пользователь', status_code=200)
 
         # данные пользователя
