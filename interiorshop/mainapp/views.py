@@ -24,7 +24,7 @@ def db_profile_by_type(prefix, type, queries):
 @receiver(pre_save, sender=ProductCategory)
 def product_is_active_update_productcategory_save(sender, instance, **kwargs):
     if instance.pk:
-        instance.product_set.update(is_activate=True)
+        instance.product_set.update(is_active=True)
     else:
         instance.product_set.update(is_active=False)
 
