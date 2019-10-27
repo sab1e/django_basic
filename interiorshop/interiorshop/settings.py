@@ -123,7 +123,7 @@ DATABASES = {
     #     'USER': 'django',
     #     'PASSWORD': 'geekbrains',
     #     'HOST': 'localhost'
-    }
+    # }
 }
 
 
