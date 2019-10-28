@@ -180,7 +180,7 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 LOGIN_URL = '/auth/login/'
 
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = 'http://45.141.100.138'
 
 EMAIL_HOST = '127.0.0.1'
 EMAIL_PORT = '8005'
