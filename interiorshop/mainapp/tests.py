@@ -27,9 +27,9 @@ class TestMainappSmoke(TestCase):
             response = self.client.get(f'/products/category/{category.pk}/')
             self.assertEqual(response.status_code, 200)
 
-        # for product in Product.objects.all():
-        #     response = self.client.get(f'/products/product/{product.pk}/')
-        #     self.assertEqual(response.status_code, 200)
+        for product in Product.objects.all():
+            response = self.client.get(f'/products/product/{product.pk}/')
+            self.assertEqual(response.status_code, 200)
 
     def tearDown(self):
         call_command('sqlsequencereset', 'mainapp', 'authapp', 'ordersapp',\
