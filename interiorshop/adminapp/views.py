@@ -13,10 +13,10 @@ from authapp.models import ShopUser
 from mainapp.models import Product, ProductCategory
 
 
-# def db_profile_by_type(prefix, type, queries):
-#     update_queries = list(filter(lambda x: type in x['sql'], queries))
-#     print(f'db_profile {type} for {prefix}:')
-#     [print(query['sql']) for query in update_queries]
+def db_profile_by_type(prefix, type, queries):
+    update_queries = list(filter(lambda x: type in x['sql'], queries))
+    print(f'db_profile {type} for {prefix}:')
+    [print(query['sql']) for query in update_queries]
 
 
 class UsersListView(ListView):
@@ -133,8 +133,8 @@ class ProductCategoryUpdateView(UpdateView):
             if discount:
                 self.object.product_set.update(price=F('price') * \
                                                      (1 - discount / 100))
-                # db_profile_by_type(self.__class__, 'UPDATE',
-                #                    connection.queries)
+                db_profile_by_type(self.__class__, 'UPDATE',
+                                   connection.queries)
         return super().form_valid(form)
 
 
