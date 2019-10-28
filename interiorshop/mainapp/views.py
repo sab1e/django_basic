@@ -15,10 +15,10 @@ import datetime
 import random
 
 
-def db_profile_by_type(prefix, type, queries):
-    update_queries = list(filter(lambda x: type in x['sql'], queries))
-    # print(f'db_profile{type} for {prefix}:')
-    # [print(query['sql']) for query in update_queries]
+# def db_profile_by_type(prefix, type, queries):
+#     update_queries = list(filter(lambda x: type in x['sql'], queries))
+#     # print(f'db_profile{type} for {prefix}:')
+#     # [print(query['sql']) for query in update_queries]
 
 
 @receiver(pre_save, sender=ProductCategory)
@@ -28,7 +28,7 @@ def product_is_active_update_productcategory_save(sender, instance, **kwargs):
     else:
         instance.product_set.update(is_active=False)
 
-    db_profile_by_type(sender, 'UPDATE', connection.queries)
+    # db_profile_by_type(sender, 'UPDATE', connection.queries)
 
 
 def get_links_menu():
