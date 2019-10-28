@@ -111,6 +111,21 @@ class TestUserManagement(TestCase):
         self.assertContains(response, text=new_user_data['first_name'],
                             status_code=200)
 
+    def test_user_wrong_register(self):
+        new_user_data = {
+            'username': 'teen',
+            'first_name': 'Мэри',
+            'last_name': 'Поппинс',
+            'password1': 'geekbrains',
+            'password2': 'geekbrains',
+            'email': 'merypoppins@geekshop.local',
+            'age': '17'}
+
+        response = self.client.post('/auth/register/', data=new_user_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertFormError(response, 'register_form', 'age',
+                             'Вы слишком молоды!')
+
     def tearDown(self):
         call_command('sqlsequencereset', 'mainapp', 'authapp', 'ordersapp',
-                    'basketapp')
+                     'basketapp')
