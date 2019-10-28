@@ -13,6 +13,7 @@ class TestMainappSmoke(TestCase):
     def test_mainapp_urls(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
+        print('OK')
 
         response = self.client.get('/contact/')
         self.assertEqual(response.status_code, 200)
