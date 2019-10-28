@@ -133,8 +133,8 @@ class ProductCategoryUpdateView(UpdateView):
             if discount:
                 self.object.product_set.update(price=F('price') * \
                                                      (1 - discount / 100))
-                db_profile_by_type(self.__class__, 'UPDATE',
-                                   connection.queries)
+                # db_profile_by_type(self.__class__, 'UPDATE',
+                #                    connection.queries)
         return super().form_valid(form)
 
 
