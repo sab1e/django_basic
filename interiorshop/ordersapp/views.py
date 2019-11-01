@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.shortcuts import get_object_or_404, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.db import transaction
@@ -147,13 +148,13 @@ def order_forming_complete(request, pk):
 
 @receiver(pre_save, sender=OrderItem)
 @receiver(pre_save, sender=Basket)
-def product_quantity_update_save(sender, update_fields, instance, **kwargs):
-    if update_fields is 'quantity' or 'product':
+def product_quantity_update_save(sender, update_fields, instance, raw, **kwargs):
+    if update_fields is 'quantity' or 'product' and not raw:
         if instance.pk:
-            instance.product.quantity -= instance.quantity - \
-                                         sender.get_item(instance.pk).quantity
+            instance.product.quantity = F('quantity') - (instance.quantity -
+                                        sender.get_item(instance.pk).quantity)
         else:
-            instance.product.quantity -= instance.quantity
+            instance.product.quantity = F('quantity') - instance.quantity
         instance.product.save()
 
 
