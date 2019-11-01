@@ -13,5 +13,5 @@ urlpatterns = [
     path('category/<int:pk>/page/<int:page>/', mainapp.products, name='page'),
     path('category/<int:pk>/page/<int:page>/ajax/',
          cache_page(3600)(mainapp.products_ajax)),
-    path('product/<int:pk>', mainapp.product, name='product'),
+    path('product/<int:pk>/', mainapp.product, name='product'),
 ]

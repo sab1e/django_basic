@@ -1,3 +1,5 @@
+from django.db import connection
+from django.db.models import F
 from django.shortcuts import HttpResponseRedirect
 from django.contrib.auth.decorators import user_passes_test
 from django.views.generic.list import ListView
@@ -5,8 +7,16 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+
+from adminapp.forms import ProductCategoryEditForm
 from authapp.models import ShopUser
 from mainapp.models import Product, ProductCategory
+
+
+def db_profile_by_type(prefix, type, queries):
+    update_queries = list(filter(lambda x: type in x['sql'], queries))
+    print(f'db_profile {type} for {prefix}:')
+    [print(query['sql']) for query in update_queries]
 
 
 class UsersListView(ListView):
@@ -105,7 +115,7 @@ class ProductCategoryUpdateView(UpdateView):
     model = ProductCategory
     template_name = 'adminapp/category_update.html'
     success_url = reverse_lazy('admin:categories')
-    fields = '__all__'
+    form_class = ProductCategoryEditForm
 
     @method_decorator(user_passes_test(lambda u: u.is_superuser))
     def dispatch(self, *args, **kwargs):
@@ -116,6 +126,16 @@ class ProductCategoryUpdateView(UpdateView):
         context['title'] = 'категории/редактирование'
 
         return context
+
+    def form_valid(self, form):
+        if 'discount' in form.cleaned_data:
+            discount = form.cleaned_data['discount']
+            if discount:
+                self.object.product_set.update(price=F('price') * \
+                                                     (1 - discount / 100))
+                db_profile_by_type(self.__class__, 'UPDATE',
+                                   connection.queries)
+        return super().form_valid(form)
 
 
 class ProductCategoryDeleteView(DeleteView):
@@ -235,4 +255,3 @@ class ProductDeleteView(DeleteView):
         self.success_url = reverse_lazy('adminapp:products',
                                         kwargs={'pk': self.object.category.pk})
         return str(self.success_url)
-
