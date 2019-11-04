@@ -1,0 +1,5 @@
+/interiorshop/venv/
+/venv/
+/interiorshop/media/
+*.sqlite3
+*.pyc
